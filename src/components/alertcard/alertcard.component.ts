@@ -34,9 +34,6 @@ export class AlertcardComponent implements OnInit {
     this.isDirty = true;
   }
 
-  constructor() {
-   }
-
   ngOnInit() {
 
     this.isDirty = false;
@@ -97,7 +94,7 @@ export class AlertcardComponent implements OnInit {
 }
 
 export class ParameterInput {
-  id: String;
-  label: String;
-  value: String;
+  id: string;
+  label: string;
+  value: string;
 }

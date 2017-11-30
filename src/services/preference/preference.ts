@@ -15,7 +15,7 @@ export class DeliveryOption {
   status: string;
 }
 
-export class AlertPreference{
+export class AlertPreference {
   alertId: string;
   active: boolean;
   deliverTo: number[];
@@ -43,6 +43,6 @@ export class AlertDefParameter {
 }
 
 export class AlertPrefParameter {
-  parameterId: String;
-  value: String;
+  parameterId: string;
+  value: string;
 }

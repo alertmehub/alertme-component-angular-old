@@ -24,7 +24,7 @@ export class PreferenceComponent implements OnInit {
   }
 
   getCustomerPreference() {
-    return this.prefService.getCustomerPreference(this.clientId, this.token).subscribe(pref => {
+    return this.prefService.getCustomerPreference(this.clientId, this.token).subscribe((pref) => {
       this.customerPreference = pref;
     });
   }

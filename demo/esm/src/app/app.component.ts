@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
   template: `<tick-tock></tick-tock>
-  <div *ngIf="true">Hello</div>
-  <div *ngIf="false">Therer</div>
+  <np-preferences [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>
 
 `
 })
@@ -15,4 +14,4 @@ export class AppComponent {
   externalParameters: object = {custId: '111111111', accountId: '1'};
 }
 
-//<np-preferences [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>
+//

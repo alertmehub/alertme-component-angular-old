@@ -11,7 +11,6 @@ export class SliderComponent implements OnInit {
   @Input() state: boolean;
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 
-
   ngOnInit() {
   }
 

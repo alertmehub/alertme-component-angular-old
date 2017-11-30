@@ -1,4 +1,8 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AlertcardComponent, DeliveryoptionsComponent,
           PreferenceComponent, SliderComponent } from './components';
 import { PreferenceService } from './services';
@@ -12,6 +16,11 @@ import { PreferenceService } from './services';
     DeliveryoptionsComponent,
     PreferenceComponent,
     SliderComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     AlertcardComponent,

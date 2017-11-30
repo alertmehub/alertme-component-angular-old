@@ -13,10 +13,9 @@ export class DeliveryoptionsComponent implements OnInit {
 
   newDeliveryOption: DeliveryOption = new DeliveryOption();
   adding = false;
-  constructor() {
-   }
 
   ngOnInit() {
+
   }
 
   addDeliveryOption() {
@@ -25,7 +24,7 @@ export class DeliveryoptionsComponent implements OnInit {
       this.newDeliveryOption.deliveryType = 'email';
     }
 
-    const phonePattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+    const phonePattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     if (phonePattern.test(this.newDeliveryOption.value)) {
       this.newDeliveryOption.deliveryType = 'text';
     }
