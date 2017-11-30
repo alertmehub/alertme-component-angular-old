@@ -1,0 +1,50 @@
+.np-slider {
+  background-color: #999;
+  width: 80px;
+  height: 32px;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.np-slider.np-slider-on .np-slider-on-value {
+  float: right;
+  display: block;
+}
+
+.np-slider.np-slider-on {
+  background-color: #00710f;
+}
+
+.np-slider.np-slider-on .np-slider-switch {
+  left: 3px;
+}
+
+.np-slider.np-slider-off .np-slider-switch {
+  left: 51px;
+}
+
+.np-slider .np-slider-switch {
+  position: absolute;
+  top: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  -webkit-transition: all 100ms ease;
+  transition: all 100ms ease;
+  background-color: #fff;
+}
+
+.np-slider .np-slider-off-value, .np-slider .np-slider-on-value {
+  display: none;
+  line-height: 32px;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  width: 54px;
+  height: 32px;
+}
+.np-slider.np-slider-off .np-slider-off-value {
+  float: left;
+  display: block;
+}

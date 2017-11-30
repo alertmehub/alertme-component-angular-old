@@ -1,0 +1,89 @@
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2em;
+  margin: 0.75rem 0.5rem;
+  font-weight: 500;
+}
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  color: #424242;
+  display: block;
+  margin-top: -0.25rem;
+}
+.np-icon {
+  width: 16px;
+  height: 13px;
+}
+.np-alert-name{
+  font-weight: bold;
+  font-size: 12pt;
+}
+.np-alert-description{
+  font-size: 12pt;
+}
+
+/*
+  Definitions for cards and containers.
+*/
+.card {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: justify;
+  -webkit-box-align: center;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-self: center;
+  align-self: center;
+  position: relative;
+  width: 100%;
+  background: #fafafa;
+  border: 0.0625rem solid #acacac;
+  margin: 0.5rem;
+  overflow: hidden;
+}
+
+.card > .section {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 0.0625rem solid #c9c9c9;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.card > .section:last-child {
+  border-bottom: 0;
+}
+
+@media screen and (min-width: 320px) {
+  .card {
+    max-width: 320px;
+  }
+}
+
+.card.fluid {
+  max-width: 100%;
+  width: auto;
+}
+
+.np-alert-parameters {
+  float: left;
+  padding: 20px;
+}
+
+.np-alert-deliver-to {
+  float: left;
+  padding: 20px;
+}
+
+.np-alert-save-cancel {
+  float:right;
+  padding: 10px;
+}
+
+
