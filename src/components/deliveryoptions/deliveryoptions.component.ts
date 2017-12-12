@@ -18,17 +18,11 @@ export class DeliveryoptionsComponent implements OnInit {
 
   }
 
+  saveDeliveryOption() {
+    this.save.emit(null);
+  }
+
   addDeliveryOption() {
-    const emailPattern =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    if (emailPattern.test(this.newDeliveryOption.value)) {
-      this.newDeliveryOption.deliveryType = 'email';
-    }
-
-    const phonePattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    if (phonePattern.test(this.newDeliveryOption.value)) {
-      this.newDeliveryOption.deliveryType = 'text';
-    }
-
     const count = this.customerPreference.deliveryOptions.length;
     this.newDeliveryOption.id = count === 0 ? 1 : this.customerPreference.deliveryOptions[count - 1].id + 1;
     this.newDeliveryOption.status = 'notVerified';

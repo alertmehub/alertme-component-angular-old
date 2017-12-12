@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AlertcardComponent, DeliveryoptionsComponent,
+import { AlertcardComponent, DeliveryoptionsComponent, DeliveryoptionComponent,
           PreferenceComponent, SliderComponent } from './components';
 import { PreferenceService } from './services';
 
@@ -14,6 +14,7 @@ import { PreferenceService } from './services';
   declarations: [
     AlertcardComponent,
     DeliveryoptionsComponent,
+    DeliveryoptionComponent,
     PreferenceComponent,
     SliderComponent
   ],
@@ -25,6 +26,7 @@ import { PreferenceService } from './services';
   exports: [
     AlertcardComponent,
     DeliveryoptionsComponent,
+    DeliveryoptionComponent,
     PreferenceComponent,
     SliderComponent
   ]

@@ -1,4 +1,4 @@
 # `netprefs-component-angular`
 
 
-Will update this readme soon.
+Component to display user preferences.

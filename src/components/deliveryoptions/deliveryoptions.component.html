@@ -1,12 +1,9 @@
 <h4>Delivery options</h4>
 <div *ngFor="let option of this.customerPreference.deliveryOptions">
-    <svg *ngIf="option.deliveryType =='text'" class="np-icon"><use xlink:href="#chat" /></svg>
-    <svg *ngIf="option.deliveryType =='email'" class="np-icon"><use xlink:href="#email" /></svg>
-  {{option.name}} ({{option.value}})
-  <span (click)="deleteDeliveryOption(option)" class="np-close"></span>
+  <np-deliveryoption [deliveryOption]="option" (save)="saveDeliveryOption()" (delete)="deleteDeliveryOption()"></np-deliveryoption>
 </div>
 <button *ngIf="!adding" class="np-button" (click)="adding=true">New Delivery Option</button>
-<div *ngIf="adding">
+<div *ngIf="adding" class="np-add-delivery-option">
     <p class="np-section">Enter an email address or mobile phone number:</p>
     <input [(ngModel)]="newDeliveryOption.value" placeholder="email or mobile number" />
     <input [(ngModel)]="newDeliveryOption.name" placeholder="Nickname (optional)" />

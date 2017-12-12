@@ -1,6 +1,6 @@
 {
   "name": "netprefs-component-angular",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "description": "NetPrefs Angular Component",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
