@@ -1,7 +1,7 @@
 {
-  "name": "netprefs-component-angular",
-  "version": "0.5.4",
-  "description": "NetPrefs Angular Component",
+  "name": "alertme-component-angular",
+  "version": "0.1.0",
+  "description": "Alertme Angular Component",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rdacorporation/netprefs-component-angular.git"
+    "url": "git+https://github.com/alertmehub/alertme-component-angular.git"
   },
   "bugs": {
-    "url": "https://github.com/rdacorporation/netprefs-component-angular/issues"
+    "url": "https://github.com/alertmehub/alertme-component-angular/issues"
   },
-  "homepage": "https://github.com/rdacorporation/netprefs-component-angular#readme",
+  "homepage": "https://github.com/alertmehub/alertme-component-angular#readme",
   "scripts": {
     "build": "npm run build:esm && npm run build:umd",
     "build:esm": "gulp inline-templates && npm run ngcompile",
@@ -49,7 +49,9 @@
     "test:watch": "karma start --auto-watch --no-single-run",
     "tslint": "tslint"
   },
-  "dependencies": {},
+  "dependencies": {
+    "angular2-multiselect-dropdown": "^2.3.0"
+  },
   "peerDependencies": {
     "@angular/common": "^4.0.0",
     "@angular/core": "^4.0.0",

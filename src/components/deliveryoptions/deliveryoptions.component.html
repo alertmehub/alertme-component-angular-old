@@ -1,14 +1,14 @@
 <h4>Delivery options</h4>
 <div *ngFor="let option of this.customerPreference.deliveryOptions">
-  <np-deliveryoption [deliveryOption]="option" (save)="saveDeliveryOption()" (delete)="deleteDeliveryOption()"></np-deliveryoption>
+  <np-deliveryoption [deliveryOption]="option" (save)="saveDeliveryOption($event)" (delete)="deleteDeliveryOption(option)"></np-deliveryoption>
 </div>
 <button *ngIf="!adding" class="np-button" (click)="adding=true">New Delivery Option</button>
 <div *ngIf="adding" class="np-add-delivery-option">
-    <p class="np-section">Enter an email address or mobile phone number:</p>
+    <p class="np-instruction">Enter an email address or mobile phone number:</p>
     <input [(ngModel)]="newDeliveryOption.value" placeholder="email or mobile number" />
     <input [(ngModel)]="newDeliveryOption.name" placeholder="Nickname (optional)" />
     <span>
-      <button class="np-button" (click)="addDeliveryOption()">Save</button>
+      <button class="np-button" (click)="addDeliveryOption()" *ngIf="newDeliveryOption.value">Save</button>
       <button class="np-button" (click)="cancelDeliveryOption()">Cancel</button>
     </span>
 </div>

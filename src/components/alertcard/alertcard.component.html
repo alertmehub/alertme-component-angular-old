@@ -11,10 +11,18 @@
     </div>
     <div *ngIf="active">
       <div class="np-alert-parameters">
-        <div  *ngFor="let parameter of parameters">
+        <div *ngFor="let parameter of alertPref.alertDef.parameters">
           <div *ngIf="parameter.label">
-            <label>{{parameter.label}}</label>
-            <input  [(ngModel)]="parameter.value" (keyup)="parameterChanged()">
+            <label>{{parameter.label}}</label><br/>
+            <input class="np-input" *ngIf="parameter.ptype != 'lookup'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
+
+            <angular2-multiselect *ngIf="parameter.ptype == 'lookup'"
+            [data]="findLookup(parameter.lookup)" [(ngModel)]="parameters[parameter.name]"
+            [settings]="dropdownSettings"
+            (onSelect)="statusChanged()"
+            (onDeSelect)="statusChanged()"
+            (onSelectAll)="statusChanged()"
+            (onDeSelectAll)="statusChanged()"></angular2-multiselect><br>
           </div>
         </div>
       </div>
@@ -22,9 +30,9 @@
         <label for="options">Deliver To:</label>
         <div *ngFor="let option of deliveryOptions">
           <div *ngIf="option.id">
-            <input type="checkbox" name="options" value="{{option.id}}" id="option{{alertPref.alertId}}{{option.id}}" tabindex="0" (click)="deliveryOptionChanged(option.id)"
+            <input type="checkbox" name="options" value="{{option.id}}" id="option{{alertPref.alertDefId}}{{option.id}}" tabindex="0" (click)="deliveryOptionChanged(option.id)"
               [checked]="this.deliverTo.indexOf(option.id) >= 0">
-            <label for="option{{alertPref.alertId}}{{option.id}}">{{option.name || option.value}}</label>
+            <label for="option{{alertPref.alertDefId}}{{option.id}}">{{option.name || option.value}}</label>
             <svg *ngIf="option.deliveryType =='text'" class="np-icon"><use xlink:href="#chat" /></svg>
             <svg *ngIf="option.deliveryType =='email'" class="np-icon"><use xlink:href="#email" /></svg>
           </div>

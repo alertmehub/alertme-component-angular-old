@@ -4,11 +4,11 @@
     <svg *ngIf="deliveryOption.deliveryType =='email'" class="np-icon"><use xlink:href="#email" /></svg>
   {{deliveryOption.name}} ({{deliveryOption.value}})
 </span>
-<div *ngIf="editing">
+<div class="np-edit-option" *ngIf="editing">
     <input [(ngModel)]="editedOption.value" placeholder="email or mobile number" />
     <input [(ngModel)]="editedOption.name" placeholder="Nickname (optional)" />
     <span>
-      <button class="np-button" (click)="saveDeliveryOption()">Save</button>
+      <button class="np-button" (click)="saveDeliveryOption()" *ngIf="editedOption.value">Save</button>
       <button class="np-button" (click)="cancelDeliveryOption()">Cancel</button>
       <button class="np-button" (click)="deleteDeliveryOption()">Delete</button>
     </span>

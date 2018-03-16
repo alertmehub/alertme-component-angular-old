@@ -1,13 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DeliveryOption, AlertPreference, AlertPrefParameter } from '../../services/preference/preference';
+import { DeliveryOption, AlertPreference, LookupList, LookupValue } from '../../services/preference/preference';
 import { SliderComponent } from '../slider/slider.component';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'np-alertcard',
   templateUrl: './alertcard.component.html',
   styleUrls: ['./alertcard.component.css']
 })
-export class AlertcardComponent implements OnInit {
+export class AlertcardComponent implements OnInit, OnChanges {
 
   @Input() alertPref: AlertPreference;
   @Input() deliveryOptions: DeliveryOption[];
@@ -16,8 +17,9 @@ export class AlertcardComponent implements OnInit {
 
   // Working storage for user interaction
   active: boolean;
-  parameters: ParameterInput[];
+  parameters: object;
   deliverTo: number[];
+  dropdownSettings: any = {};
 
   isDirty: boolean;
 
@@ -35,28 +37,65 @@ export class AlertcardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.init();
+    this.dropdownSettings = {
+        singleSelection: false,
+        text: 'Select',
+        selectAllText:'Select All',
+        unSelectAllText:'UnSelect All',
+        enableSearchFilter: true,
+        classes: 'np-dropdown'
+      };
+    }
+
+    onItemSelect(item: any) {
+      this.isDirty = true;
+    }
+    OnItemDeSelect(item: any) {
+      this.isDirty = true;
+    }
+    onSelectAll(items: any) {
+      this.isDirty = true;
+    }
+    onDeSelectAll(items: any) {
+      this.isDirty = true;
+    }
+
+  ngOnChanges() {
+    this.init();
+  }
+
+  init() {
 
     this.isDirty = false;
 
     // Save the original values passed into this component
     this.active = this.alertPref.active;
 
+    // Convert deliverTo values into a list of ids
     this.deliverTo = new Array<number>();
-    for (const i of this.alertPref.deliverTo){
-      this.deliverTo.push(i);
+    for (const deliverToValue of this.alertPref.deliverTo){
+      const deliveryOption = this.deliveryOptions.find((item) => item.value === deliverToValue);
+      if (deliveryOption) {
+        this.deliverTo.push(deliveryOption.id);
+      }
     }
 
-    // Combine parameter defintion and value into one array
-    this.parameters = new Array<ParameterInput>();
-    const alertDefParameters = this.alertPref.alertDef.parameters;
-    for (const parameter of alertDefParameters){
-      const pref = this.alertPref.parameters.find((p) => p.parameterId === parameter.id);
-      let value = this.externalParameters ? (this.externalParameters as any)[parameter.id.toLowerCase()] : null ;
-      if (!value) {
-        value = pref ? pref.value : '';
+    // Create a deep copy of the parameters (in case the user clicks cancel)
+    this.parameters = JSON.parse(JSON.stringify(this.alertPref.parameters || {}));
+
+    // Copy any external parameters passed in from the component
+    for (const parameter of this.alertPref.alertDef.parameters){
+      const externalValue = this.externalParameters ? (this.externalParameters as any)[parameter.name] : null ;
+      if (externalValue) {
+        (this.parameters as any)[parameter.name] = externalValue;
       }
-      this.parameters.push({id: parameter.id, label: parameter.label, value});
     }
+  }
+
+  // Finds the lookup list of the given name
+  findLookup(name: string): LookupValue[] {
+    return this.alertPref.alertDef.lookupLists.find((i) => i.name === name).values;
   }
 
   statusChanged() {
@@ -74,14 +113,14 @@ export class AlertcardComponent implements OnInit {
   // Save the user inputs back to the passed in preference object
   savePref() {
     this.alertPref.active = this.active;
-    this.alertPref.deliverTo = new Array<number>();
+
+    // Convert deliverTo ids back to values
+    this.alertPref.deliverTo = new Array<string>();
     for (const i of this.deliverTo){
-      this.alertPref.deliverTo.push(i);
+      this.alertPref.deliverTo.push(this.deliveryOptions.find((item) => item.id === i).value);
     }
-    this.alertPref.parameters = new Array<AlertPrefParameter>();
-    for (const p of this.parameters){
-      this.alertPref.parameters.push({parameterId: p.id, value: p.value});
-    }
+
+    this.alertPref.parameters = this.parameters;
     this.isDirty = false;
     this.save.emit(null);
   }
@@ -91,10 +130,4 @@ export class AlertcardComponent implements OnInit {
     this.ngOnInit();
   }
 
-}
-
-export class ParameterInput {
-  id: string;
-  label: string;
-  value: string;
 }

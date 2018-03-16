@@ -3,15 +3,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
   template: `<tick-tock></tick-tock>
-  <np-preferences [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>
+  <np-preferences [serviceUrl]="serviceUrl" [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>
 
 `
 })
 export class AppComponent {
   public header: string = 'UMD Demo';
-  token: string = 'abc123111111111';
-  clientId: string = '1';
-  externalParameters: object = {custId: '111111111', accountId: '1'};
+  token: string = 'e803b4ac2d2f83094849dbfb3c4c98506fceb1fdab82de97d1fe9f03f1ef9062';
+  clientId: string = 'contoso.com';
+  externalParameters: object = {custId: '1', accountId: '1'};
+  serviceUrl = 'http://localhost:3001/api';
 }
-
-//

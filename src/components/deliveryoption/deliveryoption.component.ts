@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CustomerPreference, DeliveryOption, AlertPreference } from '../../services/preference/preference';
+import { Customer, DeliveryOption, AlertPreference } from '../../services/preference/preference';
 
 @Component({
   selector: 'np-deliveryoption',
@@ -27,14 +27,17 @@ export class DeliveryoptionComponent implements OnInit {
   }
 
   saveDeliveryOption() {
-    if (this.editedOption.value !== this.deliveryOption.value){
+    if (this.editedOption.value !== this.deliveryOption.value) {
       this.deliveryOption.status = 'not validated';
     }
+    this.editedOption.updateType();
+    const originalValue = this.deliveryOption.value;
     this.deliveryOption.name = this.editedOption.name;
     this.deliveryOption.value = this.editedOption.value;
+    this.deliveryOption.deliveryType = this.editedOption.deliveryType;
 
     this.editing = false;
-    this.save.emit(null);
+    this.save.emit({originalValue, newValue: this.deliveryOption.value});
   }
 
   cancelDeliveryOption() {

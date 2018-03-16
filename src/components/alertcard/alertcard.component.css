@@ -14,6 +14,19 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   width: 16px;
   height: 13px;
 }
+
+.np-dropdown {
+  width: 300px;
+}
+
+.np-input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 20px;
+  color: #333;
+  padding: 8px;
+  margin-bottom: 10px;
+}
 .np-alert-name{
   font-weight: bold;
   font-size: 12pt;
@@ -43,7 +56,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   background: #fafafa;
   border: 0.0625rem solid #acacac;
   margin: 0.5rem;
-  overflow: hidden;
 }
 
 .card > .section {

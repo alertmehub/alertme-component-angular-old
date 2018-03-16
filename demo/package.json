@@ -26,7 +26,8 @@
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0"
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "angular2-multiselect-dropdown": "^2.3.0"
   },
   "devDependencies": {
     "@angular/compiler": "^4.0.0",
