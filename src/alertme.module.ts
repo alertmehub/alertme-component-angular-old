@@ -33,5 +33,5 @@ import { PreferenceService } from './services';
     SliderComponent
   ]
 })
-export class NetprefsModule {
+export class AlertmeModule {
 }

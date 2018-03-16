@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  template: `<tick-tock></tick-tock>
-  <np-preferences [serviceUrl]="serviceUrl" [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>
-
-`
+  template: `<np-preferences [serviceUrl]="serviceUrl" [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>`
 })
 export class AppComponent {
   public header: string = 'UMD Demo';

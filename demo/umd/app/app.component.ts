@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  template: `<tick-tock></tick-tock>
+  template: `
   umd
   `
 })
@@ -12,4 +12,3 @@ export class AppComponent {
   clientId: string = '1';
   externalParameters: object = {custId: '111111111', accountId: '1'};
 }
-//<np-preferences [token]="token" [clientId]="clientId" [externalParameters]="externalParameters"></np-preferences>

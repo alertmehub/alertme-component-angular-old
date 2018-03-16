@@ -6,7 +6,7 @@ import { Customer, AlertPreference } from './preference';
 
 @Injectable()
 export class PreferenceService {
-  api: string = 'http://service.alertmehub.com/api';
+  api: string = 'http://component.alertmehub.com/api';
 
   constructor(private http: HttpClient) {}
 

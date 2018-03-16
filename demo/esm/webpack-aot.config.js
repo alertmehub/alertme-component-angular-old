@@ -44,7 +44,7 @@ const config = {
      */
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.ejs'),
-      title: 'Netprefs Component Tester',
+      title: 'Alertme Component Tester',
       inject: 'body'
     }),
 
