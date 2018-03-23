@@ -1,6 +1,6 @@
 {
   "name": "alertme-component-angular",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Alertme Angular Component",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
@@ -45,7 +45,7 @@
     "prebuild:watch": "rimraf dist tmp",
     "prepublishOnly": "npm run ci",
     "preversion": "npm run ci",
-    "test": "karma start",
+    "test": "",
     "test:watch": "karma start --auto-watch --no-single-run",
     "tslint": "tslint"
   },
