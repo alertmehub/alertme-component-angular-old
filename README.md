@@ -61,9 +61,9 @@ The above example assumes that the existing customer portal has a login process 
 ## Alertme Registration
 
 An authorization token is acquired by making a server-side GET request to https://api.alertmehub.com/api/token/[clientid]/[userid] and setting the Authorization header to the alertme API key.
-The client id corresponds to the company using the alertme system and can be c by registering for an Alertme account at htts://admin.alertmehub.com 
+The client id corresponds to the company using the alertme system and can be acquired by registering for an Alertme account at htts://admin.alertmehub.com 
 The userid can be any string that uniquely identifies the client's customer that is currently logged into their customer portal - such as a customer id, account id, or a unique hashed value.
-The alertme API key is also c from the alertme admin site.  
+The alertme API key is also acquired from the alertme admin site.  
 
 Example server-side code to retrieve an Alertme token using the Axios node library.
 
