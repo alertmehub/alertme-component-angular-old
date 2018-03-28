@@ -117,7 +117,10 @@ export class AlertcardComponent implements OnInit, OnChanges {
     // Convert deliverTo ids back to values
     this.alertPref.deliverTo = new Array<string>();
     for (const i of this.deliverTo){
-      this.alertPref.deliverTo.push(this.deliveryOptions.find((item) => item.id === i).value);
+      const option = this.deliveryOptions.find((item) => item.id === i);
+      if(option) {
+        this.alertPref.deliverTo.push(option.value);
+      }
     }
 
     this.alertPref.parameters = this.parameters;
