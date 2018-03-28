@@ -16,7 +16,7 @@ The alertme component is intended to be dropped onto an existing customer portal
     - Alert me when my usage limit is near.
   - etc.
 
-The actual bussines alert topics are configured via an administration site.  This component displys those topics and collects the preferences for each customer.
+The actual business alert topics are configured via an administration site.  This component displays those topics and collects the preferences for each customer.
 
 ## Installation
 To pull the alertme component into your Angular project, 
@@ -26,11 +26,9 @@ npm install --save alertme-component-angular
 
 ## Usage
 Then place the component onto a page that will be used to subscribe to alerts.  Here is an example page that uses the alertme preference component <np-preferences>
-```
+```typescript
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-
-const api = '/api';
 
 @Component({
   selector: 'app-alerts',
@@ -62,14 +60,14 @@ The above example assumes that the existing customer portal has a login process 
 
 ## Alertme Registration
 
-An authorization token is aquired by making a server-side GET request to https://api.alertmehub.com/api/token/[clientid]/[userid] and setting the Authorization header to the alertme API key.
-The client id corresponds to the company using the alertme system and can be aquired by registering for an Alertme account at htts://admin.alertmehub.com 
+An authorization token is acquired by making a server-side GET request to https://api.alertmehub.com/api/token/[clientid]/[userid] and setting the Authorization header to the alertme API key.
+The client id corresponds to the company using the alertme system and can be c by registering for an Alertme account at htts://admin.alertmehub.com 
 The userid can be any string that uniquely identifies the client's customer that is currently logged into their customer portal - such as a customer id, account id, or a unique hashed value.
-The alertme API key is also aquired from the alertme admin site.  
+The alertme API key is also c from the alertme admin site.  
 
 Example server-side code to retrieve an Alertme token using the Axios node library.
 
-```
+``` typescript
     var alertmeClient = axios.create({
       baseURL: 'https://api.alertmehub.com/api/',
       timeout: 1000,
