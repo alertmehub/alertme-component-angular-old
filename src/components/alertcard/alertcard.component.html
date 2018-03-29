@@ -29,8 +29,8 @@
       <div class="np-alert-deliver-to">
         <label for="options">Deliver To:</label>
         <div *ngFor="let option of deliveryOptions">
-          <div *ngIf="option.id">
-            <input type="checkbox" name="options" value="{{option.id}}" id="option{{alertPref.alertDefId}}{{option.id}}" tabindex="0" (click)="deliveryOptionChanged(option.id)"
+          <div class="pure-checkbox" *ngIf="option.id">
+            <input  type="checkbox" name="options" value="{{option.id}}" id="option{{alertPref.alertDefId}}{{option.id}}" tabindex="0" (click)="deliveryOptionChanged(option.id)"
               [checked]="this.deliverTo.indexOf(option.id) >= 0">
             <label for="option{{alertPref.alertDefId}}{{option.id}}">{{option.name || option.value}}</label>
             <svg *ngIf="option.deliveryType =='text'" class="np-icon"><use xlink:href="#chat" /></svg>
