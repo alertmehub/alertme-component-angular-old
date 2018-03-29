@@ -57,13 +57,10 @@ export class AlertsComponent implements OnInit {
 ```
 
 The above example assumes that the existing customer portal has a login process for the customer, and that an Alertme authorization token for that customer is retrieved from the Alertme API and is stored in a service called userService.
-
-## Alertme Registration
-
 An authorization token is acquired by making a server-side GET request to https://api.alertmehub.com/api/token/[clientid]/[userid] and setting the Authorization header to the alertme API key.
-The client id corresponds to the company using the alertme system and can be acquired by registering for an Alertme account at htts://admin.alertmehub.com 
-The userid can be any string that uniquely identifies the client's customer that is currently logged into their customer portal - such as a customer id, account id, or a unique hashed value.
-The alertme API key is also acquired from the alertme admin site.  
+
+   - The userid can be any string that uniquely identifies your customer who is currently logged into your customer portal - such as a customer id, account id, or any unique hashed value.
+   - See the next section for how to get the client id and API key.
 
 Example server-side code to retrieve an Alertme token using the Axios node library.
 
@@ -79,6 +76,11 @@ Example server-side code to retrieve an Alertme token using the Axios node libra
 ```
 
 It is important that the Alertme API key be treated as a secret and not exposed in client-side code.  The example code shown above should only be run via server-side code.  
+
+## Alertme Registration
+In order to use Alertme, you must first register your company at htts://admin.alertmehub.com. 
+
+You'll pick a client id - typically identified by the domain that your customer portal runs on - e.g. toyita.com. After registering you'll be provided with an API key which you can use to obtain customer tokens as described in the previous section.
 
 ## Configure Alert Topics
 The alert topics that your customers can subscribe to are managed via the Alertme administration site.  https://admin.alertmehub.com
