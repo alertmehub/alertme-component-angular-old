@@ -1,15 +1,16 @@
-
-<span class="np-delivery-option" *ngIf="!editing" (click)="editDeliveryOption()">
-    <svg *ngIf="deliveryOption.deliveryType =='text'" class="np-icon"><use xlink:href="#chat" /></svg>
-    <svg *ngIf="deliveryOption.deliveryType =='email'" class="np-icon"><use xlink:href="#email" /></svg>
-  {{deliveryOption.name}} ({{deliveryOption.value}})
+<span class="am-delivery-option" *ngIf="!editing" (click)="editDeliveryOption()">
+    <svg *ngIf="deliveryOption.deliveryType =='sms'" class="am-icon"><use xlink:href="#chat" /></svg>
+    <svg *ngIf="deliveryOption.deliveryType =='email'" class="am-icon"><use xlink:href="#email" /></svg>
+  {{formatPhoneForDisplay(deliveryOption.value)}} <span *ngIf="deliveryOption.name" class="am-delivery-option-name">- {{deliveryOption.name}} </span>
 </span>
-<div class="np-edit-option" *ngIf="editing">
-    <input [(ngModel)]="editedOption.value" placeholder="email or mobile number" />
-    <input [(ngModel)]="editedOption.name" placeholder="Nickname (optional)" />
+<div class="am-edit-option" *ngIf="editing">
+  <form #doForm="ngForm">
+    <input id="deliverto" name="deliverto" #deliverto="ngModel" [(ngModel)]="editedOption.value" placeholder="email or mobile number" required pattern="(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3})|([\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6})"/>
+    <input id="name" name="name" [(ngModel)]="editedOption.name" placeholder="Nickname (optional)" />
     <span>
-      <button class="np-button" (click)="saveDeliveryOption()" *ngIf="editedOption.value">Save</button>
-      <button class="np-button" (click)="cancelDeliveryOption()">Cancel</button>
-      <button class="np-button" (click)="deleteDeliveryOption()">Delete</button>
+      <button class="am-button" (click)="saveDeliveryOption()" *ngIf="deliverto.valid">Save</button>
+      <button class="am-button" (click)="cancelDeliveryOption()">Cancel</button>
+      <button *ngIf="!adding" class="am-button" (click)="deleteDeliveryOption()">Delete</button>
     </span>
+  </form>
 </div>

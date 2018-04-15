@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Customer, DeliveryOption, AlertPreference } from '../../services/preference/preference';
+import { Subscriber, DeliveryOption, AlertSubscription } from '../../services/subscriber/subscriber.models';
 
 @Component({
-  selector: 'np-deliveryoptions',
+  selector: 'am-deliveryoptions',
   templateUrl: './deliveryoptions.component.html',
   styleUrls: ['./deliveryoptions.component.css']
 })
 export class DeliveryoptionsComponent implements OnInit {
 
-  @Input() customerPreference: Customer;
+  @Input() subscriber: Subscriber;
   @Output() save: EventEmitter<any> = new EventEmitter();
 
   newDeliveryOption: DeliveryOption = new DeliveryOption();
@@ -21,7 +21,7 @@ export class DeliveryoptionsComponent implements OnInit {
   saveDeliveryOption($event: any) {
 
     // Update any preference records that reference this delivery option
-    for (const pref of this.customerPreference.alertPreferences) {
+    for (const pref of this.subscriber.subscriptions) {
 
       // See if the old value was in our list
       const index = pref.deliverTo.indexOf($event.originalValue);
@@ -40,12 +40,12 @@ export class DeliveryoptionsComponent implements OnInit {
   }
 
   addDeliveryOption() {
-    const count = this.customerPreference.deliveryOptions.length;
-    this.newDeliveryOption.id = count === 0 ? 1 : this.customerPreference.deliveryOptions[count - 1].id + 1;
+    const count = this.subscriber.deliveryOptions.length;
+    this.newDeliveryOption.id = count === 0 ? 1 : this.subscriber.deliveryOptions[count - 1].id + 1;
     this.newDeliveryOption.status = 'notVerified';
-    this.newDeliveryOption.updateType();
-    this.customerPreference.deliveryOptions.push(this.newDeliveryOption);
-    this.cancelDeliveryOption();
+    this.subscriber.deliveryOptions.push(this.newDeliveryOption);
+    this.adding = false;
+    this.newDeliveryOption = new DeliveryOption();
 
     this.save.emit(null);
   }
@@ -57,11 +57,14 @@ export class DeliveryoptionsComponent implements OnInit {
 
   deleteDeliveryOption(deliveryOption: DeliveryOption) {
     // remove from list of delivery options
-    this.customerPreference.deliveryOptions.splice(this.customerPreference.deliveryOptions.indexOf(deliveryOption), 1);
+    this.subscriber.deliveryOptions.splice(this.subscriber.deliveryOptions.indexOf(deliveryOption), 1);
 
-    // Remove from any preference records that reference it
-    for (const pref of this.customerPreference.alertPreferences){
-      pref.deliverTo.splice(pref.deliverTo.indexOf(deliveryOption.value), 1);
+    // Remove from any subscription records that reference it
+    for (const subscription of this.subscriber.subscriptions) {
+      const foundAt = subscription.deliverTo.indexOf(deliveryOption.value);
+      if(foundAt > -1) {
+        subscription.deliverTo.splice(foundAt, 1);
+      }
     }
 
     this.save.emit(null);

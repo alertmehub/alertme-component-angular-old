@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'np-slider',
+  selector: 'am-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })

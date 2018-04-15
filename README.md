@@ -25,7 +25,7 @@ npm install --save alertme-component-angular
 ```
 
 ## Usage
-Then place the component onto a page that will be used to subscribe to alerts.  Here is an example page that uses the alertme preference component <np-preferences>
+Then place the component onto a page that will be used to subscribe to alerts.  Here is an example page that uses the alertme preference component <am-subscriber>
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
@@ -36,9 +36,9 @@ import { UserService } from '../services/user.service';
     <h1>Alerts!!</h1>
     <p>Sign up to be notified of important news and events.</p>
     <div style='background-color: white; padding: 10px'>
-      <np-preferences 
+      <am-subscriber 
         [token]="token" [clientId]="clientId">
-      </np-preferences>
+      </am-subscriber>
     </div>
     `
 })

@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
-import { AlertcardComponent, DeliveryoptionsComponent, DeliveryoptionComponent,
-          PreferenceComponent, SliderComponent } from './components';
-import { PreferenceService } from './services';
+import { SubscriptionComponent, DeliveryoptionsComponent, DeliveryoptionComponent,
+          SubscriberComponent, SliderComponent } from './components';
+import { SubscriberService } from './services';
 
 @NgModule({
   providers: [
-    PreferenceService,
+    SubscriberService,
   ],
   declarations: [
-    AlertcardComponent,
+    SubscriptionComponent,
     DeliveryoptionsComponent,
     DeliveryoptionComponent,
-    PreferenceComponent,
+    SubscriberComponent,
     SliderComponent
   ],
   imports: [
@@ -26,10 +26,10 @@ import { PreferenceService } from './services';
     AngularMultiSelectModule
   ],
   exports: [
-    AlertcardComponent,
+    SubscriptionComponent,
     DeliveryoptionsComponent,
     DeliveryoptionComponent,
-    PreferenceComponent,
+    SubscriberComponent,
     SliderComponent
   ]
 })

@@ -1,9 +1,9 @@
-export class Customer {
+export class Subscriber {
   _id: string;
   token: string;
-  clientId: string;
+  publisherId: string;
   deliveryOptions: DeliveryOption[];
-  alertPreferences: AlertPreference[];
+  subscriptions: AlertSubscription[];
   active: boolean;
 }
 
@@ -13,35 +13,23 @@ export class DeliveryOption {
   name: string;
   status: string;
   value: string;
-  public updateType(): boolean {
-    const emailPattern =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    const phonePattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-    if (emailPattern.test(this.value)) {
-      this.deliveryType = 'email';
-      return true;
-    }
-    if (phonePattern.test(this.value)) {
-      this.deliveryType = 'text';
-      return true;
-    }
-    return false;
-  }
 }
 
-export class AlertPreference {
-  alertDefId: string;
-  clientId: string;
+export class AlertSubscription {
+  topicId: string;
+  publisherId: string;
   active: boolean;
   deliverTo: string[];
   parameters: object;
-  alertDef: AlertDef;
+  topic: Topic;
 }
 
-export class AlertDef {
+export class Topic {
   _id: string;
   name: string;
+  label: string;
   description: string;
-  parameters: [AlertDefParameter];
+  parameters: [TopicParameter];
   content: {
     emailText: string,
     smsText: string
@@ -49,7 +37,7 @@ export class AlertDef {
   lookupLists: LookupList[];
 }
 
-export class AlertDefParameter {
+export class TopicParameter {
   name: string;
   label: string;
   ptype: string;

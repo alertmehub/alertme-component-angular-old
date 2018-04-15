@@ -10,16 +10,16 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   display: block;
   margin-top: -0.25rem;
 }
-.np-icon {
+.am-icon {
   width: 16px;
   height: 13px;
 }
 
-.np-dropdown {
+.am-dropdown {
   width: 300px;
 }
 
-.np-input {
+.am-input {
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 20px;
@@ -27,11 +27,11 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   padding: 8px;
   margin-bottom: 10px;
 }
-.np-alert-name{
+.am-alert-name{
   font-weight: bold;
   font-size: 12pt;
 }
-.np-alert-description{
+.am-alert-description{
   font-size: 12pt;
 }
 
@@ -83,18 +83,18 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   width: auto;
 }
 
-.np-alert-parameters {
+.am-alert-parameters {
   float: left;
   padding: 20px;
   min-width: 300px;
 }
 
-.np-alert-deliver-to {
+.am-alert-deliver-to {
   float: left;
   padding: 20px;
 }
 
-.np-alert-save-cancel {
+.am-alert-save-cancel {
   float:right;
   padding: 10px;
 }

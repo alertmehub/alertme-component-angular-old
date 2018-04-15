@@ -1,0 +1,52 @@
+<div class="card fluid">
+  <div class="section">
+    <div>
+      <div>
+        <div style="float:right;">
+          <am-slider [(state)]="active" (stateChange)="statusChanged()"></am-slider>
+        </div>
+        <div class="am-alert-name">{{subscription.topic.label}}</div>
+        <div class="am-alert-description">{{subscription.topic.description}}</div>
+      </div>
+    </div>
+    <div *ngIf="active">
+      <div class="am-alert-parameters">
+        <div *ngFor="let parameter of subscription.topic.parameters">
+          <div *ngIf="parameter.label">
+            <label>{{parameter.label}}</label><br/>
+            <input class="am-input" *ngIf="parameter.ptype === 'text'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
+
+            <input class="am-input" type="number" step="any" *ngIf="parameter.ptype === 'currency'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
+
+            <input class="am-input" type="number" step="any" *ngIf="parameter.ptype === 'number'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
+
+            <angular2-multiselect *ngIf="parameter.ptype === 'lookup'"
+            [data]="findLookup(parameter.lookup)" [(ngModel)]="parameters[parameter.name]"
+            [settings]="dropdownSettings"
+            (onSelect)="statusChanged()"
+            (onDeSelect)="statusChanged()"
+            (onSelectAll)="statusChanged()"
+            (onDeSelectAll)="statusChanged()"></angular2-multiselect><br>
+          </div>
+        </div>
+      </div>
+      <div class="am-alert-deliver-to">
+        <label for="options">Deliver To:</label>
+        <div *ngFor="let option of deliveryOptions">
+          <div class="pure-checkbox" *ngIf="option.id">
+            <input  type="checkbox" name="options" value="{{option.id}}" id="option{{subscription.topicId}}{{option.id}}" tabindex="0" (click)="deliveryOptionChanged(option.id)"
+              [checked]="this.deliverTo.indexOf(option.id) >= 0">
+            <label for="option{{subscription.topicId}}{{option.id}}">{{option.name || formatPhoneForDisplay(option.value)}}</label>
+            <svg *ngIf="option.deliveryType =='sms'" class="am-icon"><use xlink:href="#chat" /></svg>
+            <svg *ngIf="option.deliveryType =='email'" class="am-icon"><use xlink:href="#email" /></svg></div>
+        </div>
+      </div>
+      <div>
+        <span *ngIf="isDirty" class="am-alert-save-cancel">
+          <button  (click)="saveSubscription()">Save</button>
+          <button  (click)="cancelEdits()">Cancel</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

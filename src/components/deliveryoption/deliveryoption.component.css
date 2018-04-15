@@ -1,14 +1,25 @@
-.np-icon {
+.am-icon {
   width: 16px;
   height: 13px;
 }
 
-.np-delivery-option {
+.am-delivery-option {
   cursor: pointer;
 }
-.np-edit-option {
+.am-delivery-option-name {
+  font-weight: bold;
+}
+.am-edit-option {
   margin: 5px;
   background-color: #eee;
   padding: 5px;
   max-width: fit-content;
+}
+
+input:invalid {
+  border-left: 5px solid #a94442;
+}
+
+input:valid {
+  border-left: 5px solid #42A948
 }
