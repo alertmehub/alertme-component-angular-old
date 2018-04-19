@@ -38,15 +38,7 @@ export class SubscriptionComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.init();
-    this.dropdownSettings = {
-        singleSelection: false,
-        text: 'Select',
-        selectAllText:'Select All',
-        unSelectAllText:'UnSelect All',
-        enableSearchFilter: true,
-        classes: 'am-dropdown'
-      };
-    }
+  }
 
   onItemSelect(item: any) {
     this.isDirty = true;
@@ -103,8 +95,23 @@ export class SubscriptionComponent implements OnInit, OnChanges {
   }
 
   // Finds the lookup list of the given name
-  findLookup(name: string): LookupValue[] {
-    return this.subscription.topic.lookupLists.find((i) => i.name === name).values;
+  findLookup(name: string): LookupList {
+    return this.subscription.topic.lookupLists.find((i) => i.name === name);
+  }
+
+  // Returns settings for this lookuplist
+  lookupSettings(name: string): LookupValue[] {
+    const lookupList = this.findLookup(name);
+
+    const settings = {
+      singleSelection: lookupList.stype === 'single',
+      enableSearchFilter: true,
+      classes: 'am-dropdown',
+    } as any;
+    if(lookupList.group && lookupList.group.length > 0) {
+      settings.groupBy = 'group';
+    }
+    return settings;
   }
 
   statusChanged() {

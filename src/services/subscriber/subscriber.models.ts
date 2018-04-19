@@ -46,6 +46,8 @@ export class TopicParameter {
 
 export class LookupList {
   name: string;
+  stype: string;
+  group: string;
   values: LookupValue[];
 }
 

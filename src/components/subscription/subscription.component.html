@@ -12,7 +12,7 @@
     <div *ngIf="active">
       <div class="am-alert-parameters">
         <div *ngFor="let parameter of subscription.topic.parameters">
-          <div *ngIf="parameter.label">
+          <div *ngIf="parameter.ptype !== 'hidden'">
             <label>{{parameter.label}}</label><br/>
             <input class="am-input" *ngIf="parameter.ptype === 'text'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
 
@@ -21,8 +21,8 @@
             <input class="am-input" type="number" step="any" *ngIf="parameter.ptype === 'number'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
 
             <angular2-multiselect *ngIf="parameter.ptype === 'lookup'"
-            [data]="findLookup(parameter.lookup)" [(ngModel)]="parameters[parameter.name]"
-            [settings]="dropdownSettings"
+            [data]="findLookup(parameter.lookup).values" [(ngModel)]="parameters[parameter.name]"
+            [settings]="lookupSettings(parameter.lookup)"
             (onSelect)="statusChanged()"
             (onDeSelect)="statusChanged()"
             (onSelectAll)="statusChanged()"
