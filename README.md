@@ -37,14 +37,14 @@ import { UserService } from '../services/user.service';
     <p>Sign up to be notified of important news and events.</p>
     <div style='background-color: white; padding: 10px'>
       <am-subscriber 
-        [token]="token" [clientId]="clientId">
+        [token]="token" [publisherId]="publisherId">
       </am-subscriber>
     </div>
     `
 })
 export class AlertsComponent implements OnInit {
   token: string;
-  clientId = 'toyita.com';
+  publisherId = 'toyita.com';
 
   constructor(private userService: UserService) { }
 
@@ -57,7 +57,7 @@ export class AlertsComponent implements OnInit {
 ```
 
 The above example assumes that the existing customer portal has a login process for the customer, and that an Alertme authorization token for that customer is retrieved from the Alertme API and is stored in a service called userService.
-An authorization token is acquired by making a server-side GET request to https://api.alertmehub.com/api/token/[clientid]/[userid] and setting the Authorization header to the alertme API key.
+An authorization token is acquired by making a server-side GET request to https://api.alertmehub.com/api/v1/subscriber/token/[userid] and setting the Authorization header to the alertme API key.
 
    - The userid can be any string that uniquely identifies your customer who is currently logged into your customer portal - such as a customer id, account id, or any unique hashed value.
    - See the next section for how to get the client id and API key.
@@ -66,19 +66,19 @@ Example server-side code to retrieve an Alertme token using the Axios node libra
 
 ``` typescript
     var alertmeClient = axios.create({
-      baseURL: 'https://api.alertmehub.com/api/',
+      baseURL: 'https://api.alertmehub.com/api/v1',
       timeout: 1000,
       headers: {'Authorization': '2f27a22d980134dfc56cf8da5aa1d02ea08802d26804f0db604439281aff14c6'}
     });
 
     // Retrieve Data
-    let amToken = await alertmeClient.get("token/toyita.com/" + userId );
+    let amToken = await alertmeClient.get("subscriber/token/" + userId );
 ```
 
 It is important that the Alertme API key be treated as a secret and not exposed in client-side code.  The example code shown above should only be run via server-side code.  
 
 ## Alertme Registration
-In order to use Alertme, you must first register your company at htts://admin.alertmehub.com. 
+In order to use Alertme, you must first register your company at https://admin.alertmehub.com. 
 
 You'll pick a client id - typically identified by the domain that your customer portal runs on - e.g. toyita.com. After registering you'll be provided with an API key which you can use to obtain customer tokens as described in the previous section.
 
